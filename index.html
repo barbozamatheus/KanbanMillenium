@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML + CSS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="controls">
+        <div class="add-section">
+          <input type="text" id="clientName" placeholder="Nome do cliente..." />
+          <button onclick="addCard()">Adicionar Novo</button>
+        </div>
+        <div class="sync-section">
+          <button onclick="exportData()" class="btn-export">
+            Exportar Dados
+          </button>
+          <button onclick="importData()" class="btn-import">
+            Importar Dados
+          </button>
+        </div>
+      </div>
+
+      <div class="kanban-board">
+        <!-- Coluna 0: Primeiro Contato -->
+        <div class="column">
+          <h3>Primeiro Contato</h3>
+          <div class="card-list" id="col-0"></div>
+        </div>
+
+        <!-- Coluna 1: Convite Enviado -->
+        <div class="column">
+          <h3>Convite Enviado</h3>
+          <div class="card-list" id="col-1"></div>
+        </div>
+
+        <!-- Coluna 2: Integração Concluída -->
+        <div class="column">
+          <h3>Integração Concluída</h3>
+          <div class="card-list" id="col-2"></div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
