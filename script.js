@@ -18,6 +18,12 @@ const colRef = collection(db, "kanban_cards");
 
 let cards = [];
 
+// Função auxiliar para pegar a data local correta
+const getLocalToday = () => {
+  const d = new Date();
+  return new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+};
+
 // Ordenando os cartões pela data
 const q = query(colRef, orderBy("date", "asc"));
 
@@ -52,7 +58,13 @@ function renderBoard() {
         <input type="date" value="${card.date}" onchange="updateDate('${card.id}', this.value)">
       </div>
       <div class="card-actions">${btnLeft}${btnRight}</div>
-      <button style="width: 100%; margin-top: 10px; background: #dc3545; color: white;" onclick="deleteCard('${card.id}')">Excluir</button>
+      
+      <div class="card-notes">
+        <label>📌 Anotações:</label>
+        <textarea placeholder="Escreva aqui..." onblur="updateNotes('${card.id}', this.value)">${card.notes || ""}</textarea>
+      </div>
+
+      <button style="width: 100%; margin-top: 10px; background: #dc3545; color: white; border: none; border-radius: 4px; padding: 6px; cursor: pointer;" onclick="deleteCard('${card.id}')">Excluir</button>
     `;
 
     // Define o texto de forma segura
@@ -69,8 +81,9 @@ window.addCard = async () => {
   try {
     await addDoc(colRef, {
       name: name,
-      date: new Date().toISOString().split('T')[0],
-      status: 0
+      date: getLocalToday(),
+      status: 0,
+      notes: ""
     });
     input.value = '';
   } catch (err) {
@@ -83,7 +96,11 @@ window.moveCard = async (id, direction) => {
   if (card) {
     try {
       const docRef = doc(db, "kanban_cards", id);
-      await updateDoc(docRef, { status: card.status + direction });
+      // Atualiza o status e a data simultaneamente
+      await updateDoc(docRef, { 
+        status: card.status + direction,
+        date: getLocalToday()
+      });
     } catch (err) {
       alert("Erro ao mover cartão: " + err.message);
     }
@@ -96,6 +113,16 @@ window.updateDate = async (id, newDate) => {
     await updateDoc(docRef, { date: newDate });
   } catch (err) {
     alert("Erro ao atualizar data: " + err.message);
+  }
+};
+
+// Nova função para salvar as anotações
+window.updateNotes = async (id, newNotes) => {
+  try {
+    const docRef = doc(db, "kanban_cards", id);
+    await updateDoc(docRef, { notes: newNotes });
+  } catch (err) {
+    console.error("Erro ao salvar anotação: " + err.message);
   }
 };
 
