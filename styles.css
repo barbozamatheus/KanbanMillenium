@@ -127,3 +127,39 @@ button:hover {
 .card-actions button:hover {
   background-color: #c1c7d0;
 }
+
+.card-notes {
+  background-color: #fff9c4; /* Amarelo estilo post-it */
+  border: 1px solid #f0e68c;
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 10px;
+  display: none; /* Escondido por padrão */
+  flex-direction: column;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Mostra o post-it no hover ou quando o campo está focado (sendo digitado) */
+.card:hover .card-notes,
+.card-notes:focus-within {
+  display: flex;
+}
+
+.card-notes textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  min-height: 50px;
+  color: #333;
+}
+
+.card-notes label {
+  font-weight: bold;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 4px;
+}
