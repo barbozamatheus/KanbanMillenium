@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Kanban Millenium</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="open_finance.css?v=2" />
   </head>
   <body>
     <div class="app-container">
@@ -15,6 +16,45 @@
           <button onclick="addCard()">Adicionar Novo</button>
         </div>
         
+        <button type="button" id="btn-toggle-matriz" class="btn-toggle-matriz" onclick="toggleMatrizOpenFinance()">
+          🏦 Guia de Bancos / Open Finance <span class="badge-count">15</span>
+        </button>
+      </div>
+
+      <!-- PAINEL EXPANSÍVEL: GUIA DE BANCOS OPEN FINANCE -->
+      <div id="matriz-wrapper" class="matriz-collapsible-wrapper">
+        <div class="matriz-header">
+          <div>
+            <h2>🏦 Especificidades de Adesão Open Finance</h2>
+            <p>Consulte regras de múltiplas contas, autorizações e particularidades sem abrir os PDFs.</p>
+          </div>
+          <button type="button" class="btn-close-matriz" onclick="toggleMatrizOpenFinance()">✖ Fechar</button>
+        </div>
+
+        <div class="of-stats-row">
+          <div class="of-stat-pill">Total: <strong>15 Bancos</strong></div>
+          <div class="of-stat-pill" style="border-color: #ea580c;">⚠️ Conta a Conta: <strong style="color: #fb923c;">4</strong></div>
+          <div class="of-stat-pill" style="border-color: #16a34a;">⚡ Conecta Todas: <strong style="color: #4ade80;">11</strong></div>
+          <div class="of-stat-pill" style="border-color: #be185d;">🚨 Exige Operador: <strong style="color: #f472b6;">Bradesco</strong></div>
+        </div>
+
+        <div class="of-filter-bar">
+          <input 
+            type="text" 
+            id="of-search-input" 
+            class="of-search-input" 
+            placeholder="🔍 Buscar banco (Itaú, Bradesco, BB...) ou regra..." 
+            oninput="filterOfSearch()"
+          />
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="of-filter-btn active" onclick="setOfFilter('all', this)">Todos (15)</button>
+            <button type="button" class="of-filter-btn" onclick="setOfFilter('conta-a-conta', this)">⚠️ Conta a Conta</button>
+            <button type="button" class="of-filter-btn" onclick="setOfFilter('todas-juntas', this)">⚡ Todas Conectadas</button>
+            <button type="button" class="of-filter-btn" onclick="setOfFilter('perfil-operador', this)">🚨 Bradesco (Operador)</button>
+          </div>
+        </div>
+
+        <div class="of-cards-grid" id="of-cards-grid"></div>
       </div>
 
       <div class="kanban-board">
@@ -37,6 +77,23 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL DE TUTORIAL PASSO A PASSO -->
+    <div id="of-tutorial-modal" class="of-modal-backdrop" onclick="if(event.target === this) closeTutorialModal()">
+      <div class="of-modal-dialog">
+        <div class="of-modal-header">
+          <h3 id="of-modal-title">Tutorial Open Finance</h3>
+          <button type="button" class="of-modal-close" onclick="closeTutorialModal()">✖</button>
+        </div>
+        <div class="of-modal-body">
+          <div id="of-modal-alert" class="of-modal-banner"></div>
+          <div class="of-modal-tabs" id="of-modal-tabs"></div>
+          <div class="of-modal-steps" id="of-modal-steps"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="open_finance.js?v=3"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>
