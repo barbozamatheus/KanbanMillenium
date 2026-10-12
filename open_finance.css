@@ -93,6 +93,28 @@
   background: #7f1d1d;
 }
 
+/* Botão Link para Planilha Google Sheets / Excel */
+.btn-sheet-link {
+  background-color: #065f46;
+  color: #a7f3d0;
+  border: 1px solid #059669;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-sheet-link:hover {
+  background-color: #047857;
+  color: #fff;
+  border-color: #10b981;
+}
+
 /* Barra de Destaques Rápidos */
 .of-stats-row {
   display: flex;

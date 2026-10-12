@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Kanban Millenium</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="open_finance.css?v=2" />
+    <link rel="stylesheet" href="open_finance.css?v=4" />
   </head>
   <body>
     <div class="app-container">
@@ -16,9 +16,20 @@
           <button onclick="addCard()">Adicionar Novo</button>
         </div>
         
-        <button type="button" id="btn-toggle-matriz" class="btn-toggle-matriz" onclick="toggleMatrizOpenFinance()">
-          🏦 Guia de Bancos / Open Finance <span class="badge-count">15</span>
-        </button>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <a 
+            href="https://docs.google.com/spreadsheets/d/1XRPPySDW8HMwdiWCP4FZxsIFyRmYmlTXC1CTj6-v2-I/edit?usp=drivesdk" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn-sheet-link"
+          >
+            📊 Planilha Google Sheets / Excel
+          </a>
+          
+          <button type="button" id="btn-toggle-matriz" class="btn-toggle-matriz" onclick="toggleMatrizOpenFinance()">
+            🏦 Guia de Bancos / Open Finance <span class="badge-count">15</span>
+          </button>
+        </div>
       </div>
 
       <!-- PAINEL EXPANSÍVEL: GUIA DE BANCOS OPEN FINANCE -->
@@ -28,7 +39,17 @@
             <h2>🏦 Especificidades de Adesão Open Finance</h2>
             <p>Consulte regras de múltiplas contas, autorizações e particularidades sem abrir os PDFs.</p>
           </div>
-          <button type="button" class="btn-close-matriz" onclick="toggleMatrizOpenFinance()">✖ Fechar</button>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <a 
+              href="https://docs.google.com/spreadsheets/d/1XRPPySDW8HMwdiWCP4FZxsIFyRmYmlTXC1CTj6-v2-I/edit?usp=drivesdk" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-sheet-link"
+            >
+              📊 Planilha Excel / Google Sheets
+            </a>
+            <button type="button" class="btn-close-matriz" onclick="toggleMatrizOpenFinance()">✖ Fechar</button>
+          </div>
         </div>
 
         <div class="of-stats-row">
@@ -83,7 +104,18 @@
       <div class="of-modal-dialog">
         <div class="of-modal-header">
           <h3 id="of-modal-title">Tutorial Open Finance</h3>
-          <button type="button" class="of-modal-close" onclick="closeTutorialModal()">✖</button>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <a 
+              href="https://docs.google.com/spreadsheets/d/1XRPPySDW8HMwdiWCP4FZxsIFyRmYmlTXC1CTj6-v2-I/edit?usp=drivesdk" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-sheet-link"
+              style="padding: 4px 10px; font-size: 12px;"
+            >
+              📊 Planilha
+            </a>
+            <button type="button" class="of-modal-close" onclick="closeTutorialModal()">✖</button>
+          </div>
         </div>
         <div class="of-modal-body">
           <div id="of-modal-alert" class="of-modal-banner"></div>
@@ -93,7 +125,7 @@
       </div>
     </div>
 
-    <script src="open_finance.js?v=3"></script>
+    <script src="open_finance.js?v=4"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>
